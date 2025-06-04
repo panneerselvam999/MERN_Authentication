@@ -36,7 +36,7 @@ const Login = () => {
 
 
   // Make sure this is at the top of your component file
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -49,8 +49,10 @@ const Login = () => {
       console.log(response.data);
       if (response.data.status === "Success") {
         if (response.data.role === "admin") {
+          console.log("Login successful, navigating to dashboard");
           navigate("/dashboard");
         } else {
+          console.log("Login successful, navigating to home");
           navigate("/");
         }
       }

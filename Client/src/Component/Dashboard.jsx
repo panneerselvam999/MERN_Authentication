@@ -14,9 +14,10 @@ const Dashboard = () => {
   useEffect(() => {
     axios.get("http://localhost:5000/dashboard")
       .then((response) => {
-        if (response.data === "Success") {
+        console.log(" dashboard data", response.data);
+        if (response.data.status === "Success") {
           Setsuc("Success OK");
-        }else {
+        } else {
           navigate("/");
         }
       }).catch((error) => {
