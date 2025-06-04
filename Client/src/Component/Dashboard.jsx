@@ -25,10 +25,24 @@ const Dashboard = () => {
       })
   }, [])
 
+  // const handleLogout = () => {
+  //   console.log("Logging out...");
+  //   localStorage.removeItem("token");
+  //   navigate("/login"); // or wherever your login page is
+  // };
+  
+
+  const handleLogout = async () => {
+    await axios.post("http://localhost:5000/logout", {}, { withCredentials: true }); // ✅ Send request
+    navigate("/login");
+  };
+  
   return (
     <div>
       <h1>Dashboard</h1>
       <p>{suc}</p>
+      <button className='p-1.5 bg-red-800' onClick={handleLogout}>Logout</button>  {/* Wrap navigate with arrow function */}
+
     </div>
   )
 }

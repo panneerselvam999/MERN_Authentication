@@ -44,9 +44,9 @@ const Login = () => {
       const response = await axios.post("http://localhost:5000/login", {
         email,
         password,
-      });
+      }, { withCredentials: true }); // ✅ Send request with credentials
 
-      console.log(response.data);
+      console.log("login data: ", response.data);
       if (response.data.status === "Success") {
         if (response.data.role === "admin") {
           console.log("Login successful, navigating to dashboard");
@@ -62,6 +62,36 @@ const Login = () => {
       alert("Error logging in user");
     }
   };
+
+
+
+  // token as saved localStorage
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await axios.post("http://localhost:5000/login", {
+  //       email,
+  //       password,
+  //     });
+
+  //     console.log("login data:", response.data);
+
+  //     if (response.data.status === "Success") {
+  //       // ✅ Store token
+  //       localStorage.setItem("token", response.data.token);
+
+  //       // Navigate based on role
+  //       if (response.data.role === "admin") {
+  //         navigate("/dashboard");
+  //       } else {
+  //         navigate("/");
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("There was an error logging in!", error);
+  //     alert("Error logging in user");
+  //   }
+  // };
 
   return (
     <section>

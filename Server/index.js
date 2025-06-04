@@ -87,6 +87,13 @@ app.post("/login", async (req, res) => {
           );
           res.cookie("token", token);
           return res.json({ status: "Success", role: user.role, userName: user.userName });
+          // return res.json({
+          //   status: "Success",
+          //   role: user.role,
+          //   userName: user.userName,
+          //   token: token // ✅ send token in response
+          // });
+          
         } else {
           res.json({ status: "Invalid password" });
         }
@@ -97,6 +104,12 @@ app.post("/login", async (req, res) => {
     }
   });
 });
+
+app.post("/logout", (req, res) => {
+  res.clearCookie("token"); // ✅ Clear the cookie
+  res.json({ message: "Logged out successfully" });
+});
+
 
 // app.post("/login", async (req, res) => {
 //   const { email, password } = req.body;
